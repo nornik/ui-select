@@ -621,6 +621,7 @@ uis.controller('uiSelectCtrl',
 
     $scope.$apply(function() {
 
+      var checkTagging = false;
       var tagged = false;
 
       if (ctrl.items.length > 0 || ctrl.tagging.isActivated) {
@@ -630,13 +631,17 @@ uis.controller('uiSelectCtrl',
         }
         if ( ctrl.taggingTokens.isActivated ) {
           for (var i = 0; i < ctrl.taggingTokens.tokens.length; i++) {
-            if ( ctrl.taggingTokens.tokens[i] === KEY.MAP[e.keyCode] ) {
-              // make sure there is a new value to push via tagging
-              if ( ctrl.search.length > 0 ) {
-                tagged = true;
-              }
+            if (e.key != ',' && ctrl.taggingTokens.tokens[i] === KEY.MAP[e.keyCode] ) {
+              checkTagging = true;
+            } else if (e.key == ',' && ctrl.taggingTokens.tokens[i]) {
+              checkTagging = true;
             }
           }
+
+          if (checkTagging && ctrl.search.length > 0) {
+            tagged = true;
+          }
+
           if ( tagged ) {
             $timeout(function() {
               ctrl.searchInput.triggerHandler('tagged');
