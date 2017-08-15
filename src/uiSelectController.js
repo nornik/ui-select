@@ -638,7 +638,7 @@ uis.controller('uiSelectCtrl',
           if ( tagged ) {
             $timeout(function() {
               ctrl.searchInput.triggerHandler('tagged');
-              var newItem = ctrl.search.replace(KEY.MAP[e.key],'').trim();
+              var newItem = ctrl.search.replace(e.key,'').trim();
               if ( ctrl.tagging.fct ) {
                 newItem = ctrl.tagging.fct( newItem );
               }
