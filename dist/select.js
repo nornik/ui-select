@@ -123,7 +123,8 @@ var uis = angular.module('ui.select', [])
   appendToBody: false,
   spinnerEnabled: false,
   spinnerClass: 'glyphicon glyphicon-refresh ui-select-spin',
-  backspaceReset: true
+  backspaceReset: true,
+  backspaceDeleteTag : true
 })
 
 // See Rename minErr and make it accessible from outside https://github.com/angular/angular.js/issues/6913
@@ -1785,7 +1786,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
               break;
             case KEY.BACKSPACE:
               // Remove selected item and select previous/first
-              if(~$selectMultiple.activeMatchIndex){
+              if(~$selectMultiple.activeMatchIndex && $selectMultiple.backspaceDeleteTag){
                 if($selectMultiple.removeChoice(curr)) {
                   return prev;
                 } else {

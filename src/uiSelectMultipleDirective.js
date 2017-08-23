@@ -249,7 +249,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
               break;
             case KEY.BACKSPACE:
               // Remove selected item and select previous/first
-              if(~$selectMultiple.activeMatchIndex){
+              if(~$selectMultiple.activeMatchIndex && $selectMultiple.backspaceDeleteTag){
                 if($selectMultiple.removeChoice(curr)) {
                   return prev;
                 } else {
