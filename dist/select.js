@@ -124,7 +124,8 @@ var uis = angular.module('ui.select', [])
   spinnerEnabled: false,
   spinnerClass: 'glyphicon glyphicon-refresh ui-select-spin',
   backspaceReset: true,
-  backspaceDeleteTag : true
+  backspaceDeleteTag : true,
+  searchAsNewItem : true
 })
 
 // See Rename minErr and make it accessible from outside https://github.com/angular/angular.js/issues/6913
@@ -1921,7 +1922,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
             items = items.slice(dupeIndex+1,items.length-1);
           } else {
             items = [];
-            if (newItem) items.push(newItem);
+            if (newItem && scope.searchAsNewItem) items.push(newItem);
             items = items.concat(stashArr);
           }
           scope.$evalAsync( function () {
