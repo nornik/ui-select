@@ -329,6 +329,7 @@ uis.controller('uiSelectCtrl',
   ctrl.closeOnSelect = true; //Initialized inside uiSelect directive link function
   ctrl.skipFocusser = false; //Set to true to avoid returning focus to ctrl when item is selected
   ctrl.search = EMPTY_SEARCH;
+  ctrl.searchAsNewItem = uiSelectConfig.searchAsNewItem;
 
   ctrl.activeIndex = 0; //Dropdown of choices
   ctrl.items = []; //All available choices
@@ -1922,7 +1923,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
             items = items.slice(dupeIndex+1,items.length-1);
           } else {
             items = [];
-            if (newItem && $selectMultiple.searchAsNewItem) items.push(newItem);
+            if (newItem && $select.searchAsNewItem) items.push(newItem);
             items = items.concat(stashArr);
           }
           scope.$evalAsync( function () {
