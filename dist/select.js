@@ -1922,7 +1922,7 @@ uis.directive('uiSelectMultiple', ['uiSelectMinErr','$timeout', function(uiSelec
             items = items.slice(dupeIndex+1,items.length-1);
           } else {
             items = [];
-            if (newItem && scope.searchAsNewItem) items.push(newItem);
+            if (newItem && $selectMultiple.searchAsNewItem) items.push(newItem);
             items = items.concat(stashArr);
           }
           scope.$evalAsync( function () {
